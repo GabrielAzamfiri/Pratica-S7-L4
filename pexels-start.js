@@ -17,6 +17,8 @@ window.addEventListener("DOMContentLoaded", function () {
     loadImg(url);
   });
   function loadImg(url) {
+    const row = document.querySelector("#containerPhotos");
+    row.innerHTML = "";
     fetch(url, { headers: { Authorization: "6SiMMbZmMq653zKOBijPQwdWbjKzXk1a8jEwHGxCVbH6ePVhnv3errCk" } })
       .then(resp => {
         if (resp.ok) {
@@ -31,8 +33,6 @@ window.addEventListener("DOMContentLoaded", function () {
         // qui dentro ci saremo nel momento esatto in cui avremo ricevuto il dato,
         // è il punto giusto per fare tutta la dom manipulation che serve
         console.log(arrObj);
-
-        const row = document.querySelector("#containerPhotos");
 
         arrObj.photos.forEach(photo => {
           const col = this.document.createElement("div");
