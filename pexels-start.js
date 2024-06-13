@@ -3,23 +3,26 @@
 window.addEventListener("DOMContentLoaded", function () {
   const loadPrimImg = this.document.querySelector(".btn-primary");
   const loadSecImg = this.document.querySelector(".btn-secondary");
-  const urlCat = "https://api.pexels.com/v1/search?query=cat";
-  const urlDog = "https://api.pexels.com/v1/search?query=dog";
-
+  const url = "https://api.pexels.com/v1/search?query=";
+  const searchQuery = document.getElementById("searchQuery");
+  searchQuery.addEventListener("change", function () {
+    let info = searchQuery.value;
+    loadImg(info);
+  });
   loadPrimImg.addEventListener("click", event => {
     event.preventDefault();
-    let url = urlDog;
-    loadImg(url);
+    let info = "dog";
+    loadImg(info);
   });
   loadSecImg.addEventListener("click", event => {
     event.preventDefault();
-    let url = urlCat;
-    loadImg(url);
+    let info = "cat";
+    loadImg(info);
   });
-  function loadImg(url) {
+  function loadImg(info) {
     const row = document.querySelector("#containerPhotos");
     row.innerHTML = "";
-    fetch(url, { headers: { Authorization: "6SiMMbZmMq653zKOBijPQwdWbjKzXk1a8jEwHGxCVbH6ePVhnv3errCk" } })
+    fetch(url + info, { headers: { Authorization: "6SiMMbZmMq653zKOBijPQwdWbjKzXk1a8jEwHGxCVbH6ePVhnv3errCk" } })
       .then(resp => {
         if (resp.ok) {
           // restituiamo il dato convertito in array da JSON
@@ -68,7 +71,7 @@ window.addEventListener("DOMContentLoaded", function () {
           btnGroup.append(btnView, btnHide);
           const small = document.createElement("small");
           small.className = "text-muted";
-          small.innerText = "9 mins";
+          small.innerText = photo.id;
           divFlex.append(btnGroup, small);
           cardBody.append(h5, p, divFlex);
           card.append(img, cardBody);
