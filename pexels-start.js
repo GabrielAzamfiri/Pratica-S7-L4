@@ -45,12 +45,19 @@ window.addEventListener("DOMContentLoaded", function () {
           const img = document.createElement("img");
           img.className = "bd-placeholder-img card-img-top";
           img.setAttribute("src", photo.src.original);
+          img.addEventListener("click", () => {
+            window.location.assign("./dettagli.html?pexelId=" + photo.id);
+          });
+
           const cardBody = document.createElement("div");
           cardBody.className = "card-body";
           const h5 = document.createElement("h5");
           h5.innerText = photo.photographer;
           const p = document.createElement("p");
           p.innerText = photo.alt;
+          p.addEventListener("click", () => {
+            window.location.assign("./dettagli.html?pexelId=" + photo.id);
+          });
           const divFlex = document.createElement("div");
           divFlex.className = "d-flex justify-content-between align-items-center";
           const btnGroup = document.createElement("div");
