@@ -56,11 +56,16 @@ window.addEventListener("DOMContentLoaded", function () {
           btnView.type = "button";
           btnView.className = "btn btn-sm btn-outline-secondary";
           btnView.innerText = "View";
-          const btnEdit = document.createElement("button");
-          btnEdit.type = "button";
-          btnEdit.className = "btn btn-sm btn-outline-secondary";
-          btnEdit.innerText = "Edit";
-          btnGroup.append(btnView, btnEdit);
+          const btnHide = document.createElement("button");
+          btnHide.type = "button";
+          btnHide.className = "btn btn-sm btn-outline-secondary";
+          btnHide.innerText = "Hide";
+          btnHide.addEventListener("click", event => {
+            event.preventDefault();
+            col.remove();
+          });
+
+          btnGroup.append(btnView, btnHide);
           const small = document.createElement("small");
           small.className = "text-muted";
           small.innerText = "9 mins";
